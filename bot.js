@@ -1,11 +1,11 @@
-const Discord = require("discord.js");
+	const Discord = require("discord.js");
 const ytdl = require("ytdl-core");
 const { Client, Util } = require('discord.js');
 const fs = require('fs');
 const getYoutubeID = require('get-youtube-id');
 const moment = require('moment');
 const db = require('quick.db');
-const client = new Discord.Client();   
+const bot = new Discord.Client();   
 const giphy = require('giphy-api')();    
 const googl = require('goo.gl');  
 const translate = require('google-translate-api');   
@@ -38,12 +38,12 @@ npm install simple-youtube-api
 npm install queue
 */
 
-client.on('ready', () => {
-    console.log(`Logged in as ${client.user.tag}!`);
+bot.on('ready', () => {
+    console.log(`Logged in as ${bot.user.tag}!`);
 });
 //by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
-const prefix = "%";
-client.on('message', async msg => { // eslint-disable-line
+var prefix = "%";
+bot.on('message', async msg => { // eslint-disable-line
 	if (msg.author.bot) return undefined;
 	//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
 	if (!msg.content.startsWith(prefix)) return undefined;
@@ -60,7 +60,7 @@ client.on('message', async msg => { // eslint-disable-line
 		if (msg.author.id !== '419212015098134538') return msg.reply('** هذا الأمر فقط لصاحب البوت و شكراًً **')
 		const voiceChannel = msg.member.voiceChannel;
 		if (!voiceChannel) return msg.channel.send('يجب توآجد حضرتك بروم صوتي .');
-		const permissions = voiceChannel.permissionsFor(msg.client.user);
+		const permissions = voiceChannel.permissionsFor(msg.bot.user);
 		if (!permissions.has('CONNECT')) {
 			//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
 			return msg.channel.send('لا يتوآجد لدي صلاحية للتكلم بهذآ الروم');
@@ -241,34 +241,34 @@ function play(guild, song) {
 	serverQueue.textChannel.send(`بدء تشغيل : **${song.title}**`);
 }//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
 
-const adminprefix = "A";//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
-client.on('message', message => {//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
+var admin = "A";//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
+bot.on('message', message => {//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
   var argresult = message.content.split(` `).slice(1).join(' ');//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
-if (message.content.startsWith(adminprefix + 'setP')) {//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
+if (message.content.startsWith(admin + 'setP')) {//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
     if (message.author.id !== '419212015098134538') return message.reply('** هذا الأمر فقط لصاحب البوت و شكراًً **')
-  client.user.setGame(argresult);
+  bot.user.setGame(argresult);
     message.channel.sendMessage(`**${argresult} تم تغيير بلاينق البوت إلى **`)
 } else 
-  if (message.content.startsWith(adminprefix + 'setname')) {
+  if (message.content.startsWith(admin + 'setname')) {
 if (message.author.id !== '419212015098134538') return message.reply('** هذا الأمر فقط لصاحب البوت و شكراًً **')
-client.user.setUsername(argresult).then
+bot.user.setUsername(argresult).then
     message.channel.sendMessage(`**${argresult}** : تم تغيير أسم البوت إلى`)
 return message.reply("**لا يمكنك تغيير الاسم يجب عليك الانتظآر لمدة ساعتين . **");
 } else
-  if (message.content.startsWith(adminprefix + 'setphoto')) {
+  if (message.content.startsWith(admin + 'setphoto')) {
 if (message.author.id !== '419212015098134538') return message.reply('** هذا الأمر فقط لصاحب البوت و شكراًً **')
-client.user.setAvatar(argresult);
+bot.user.setAvatar(argresult);
   message.channel.sendMessage(`**${argresult}** : تم تغير صورة البوت`);
       } else     
-if (message.content.startsWith(adminprefix + 'setT')) {
+if (message.content.startsWith(admin + 'setT')) {
 if (message.author.id !== '419212015098134538') return message.reply('** هذا الأمر فقط لصاحب البوت و شكراًً **')
-  client.user.setGame(argresult, "https://www.twitch.tv/idk");
+  bot.user.setGame(argresult, "https://www.twitch.tv/idk");
     message.channel.sendMessage(`**تم تغيير تويتش البوت إلى  ${argresult}**`)
 }
 
 });
 
-client.on("message", message => {
+bot.on("message", message => {
  if (message.content === `${prefix}help`) {
 if (message.author.id !== '419212015098134538') return message.reply('** هذا الأمر فقط لصاحب البوت و شكراًً **')
 
@@ -288,4 +288,4 @@ ${prefix}queue ⇏ لمعرفة قآئمة التشغيل
     
    }
    });
-client.login(process.env.BOT_TOKEN)
+bot.login(process.env.A7A_TOKEN)
